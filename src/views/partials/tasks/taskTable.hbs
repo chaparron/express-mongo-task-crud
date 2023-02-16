@@ -1,29 +1,44 @@
-<table>
-  <thead>
-    <tr>
-      <th>N.</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Operations</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    {{#each tasks}}
+{{#if tasks}}
+  <table class="table table-bordered table-hover table-dark">
+    <thead>
       <tr>
-        <td>{{@index}}</td>
-        <td>{{title}}</td>
-        <td>{{description}}</td>
-        <td>
-          {{#if done}}
-            <a href="/tasks/{{_id}}/toggleDone">Undone</a>
-          {{else}}
-            <a href="/tasks/{{_id}}/toggleDone">Done</a>
-          {{/if}}
-          <a href="/tasks/{{_id}}/edit">Update</a>
-          <a href="/tasks/{{_id}}/delete">Delete</a>
-        </td>
+        <th>N.</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Operations</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      {{#each tasks}}
+        <tr>
+          <td>{{@index}}</td>
+          <td>{{title}}</td>
+          <td>{{description}}</td>
+          <td>
+            {{#if done}}
+              <a
+                href="/tasks/{{_id}}/toggleDone"
+                class="btn btn-success"
+              >Done</a>
+            {{else}}
+              <a
+                href="/tasks/{{_id}}/toggleDone"
+                class="btn btn-secondary"
+              >Undone</a>
+            {{/if}}
+            <a href="/tasks/{{_id}}/edit" class="bt btn btn-warning">Update</a>
+            <a href="/tasks/{{_id}}/delete" class="bt btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="h-200 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+      <h1>No tasks</h1>
+      <img src="/icons/empty.svg" alt="No tasks icon" class="w-75" />
+    </div>
+  </div>
+{{/if}}

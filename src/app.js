@@ -22,12 +22,13 @@ app.engine(
   }).engine
 );
 app.set("view engine", ".hbs");
-app.set("port", 3000);
 
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 // Módulo de express para entender lo que viene de los formularios
 
 app.use(indexRoutes);
+
+app.use(express.static(path.join(__dirname, "public")));
 
 export default app;
